@@ -16,17 +16,19 @@ public class Main {
   // private static ConcurrentSet<Type> types;
 
   public static void main(String[] args) throws IOException {
-    Path path = FileSystems.getDefault().getPath(".", "test.apk");
+    //Path path = FileSystems.getDefault().getPath(".", "test.apk");
+    Path path = FileSystems.getDefault().getPath(".");
     AnalysisInputLocation inputLocation =
-        new ApkAnalysisInputLocation(path, SourceType.Application);
+        new JavaClassPathAnalysisInputLocation(path.toString(), SourceType.Application);
     JavaView view = new JavaView(inputLocation);
+    Collection<JavaSootClass> viewClasses = view.getClasses().toList();
 
     File dir = new File("facts");
     dir.mkdirs();
     Database db = new Database("facts");
     Representation rep = new Representation();
     FactWriter writer = new FactWriter(db, rep);
-    FactGenerator factgen = new FactGenerator(writer, view.getClasses());
+    FactGenerator factgen = new FactGenerator(writer, viewClasses);
     factgen.run();
     db.flush();
     db.close();

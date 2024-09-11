@@ -4,54 +4,64 @@ import java.util.regex.Pattern;
 import sootup.core.jimple.visitor.*;
 import sootup.core.types.ClassType;
 
-public class TypeNameVisitor extends AbstractTypeVisitor<String> {
+public class TypeNameVisitor extends AbstractTypeVisitor {
   private static final Pattern dotPat = Pattern.compile("\\.");
+  protected StringBuilder result = null;
 
+  TypeNameVisitor() {
+    this.result = new StringBuilder();
+  }
+
+  @Override
   public void caseBooleanType() {
-    setResult("Z");
+    result.append("Z");
   }
 
   public void caseArrayType() {
-    setResult("[");
+    result.append("[");
   }
 
   public void caseByteType() {
-    setResult("B");
+    result.append("B");
   }
 
   public void caseCharType() {
-    setResult("C");
+    result.append("C");
   }
 
   public void caseDoubleType() {
-    setResult("D");
+    result.append("D");
   }
 
   public void caseFloatType() {
-    setResult("F");
+    result.append("F");
   }
 
   public void caseIntType() {
-    setResult("I");
+    result.append("I");
   }
 
   public void caseLongType() {
-    setResult("J");
+    result.append("J");
   }
 
   public void caseNullType() {
-    setResult("null");
+    result.append("null");
   }
 
   public void caseShortType() {
-    setResult("S");
+    result.append("S");
   }
 
   public void caseVoidType() {
-    setResult("V");
+    result.append("V");
   }
 
   public void caseClassType(ClassType t) {
-    setResult("L" + dotPat.matcher(t.toString()).replaceAll("/") + ";");
+    result.append("L" + dotPat.matcher(t.toString()).replaceAll("/") + ";");
+  }
+
+  public String getResult() {
+    return result.toString();
   }
 }
