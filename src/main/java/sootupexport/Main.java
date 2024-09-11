@@ -21,7 +21,7 @@ public class Main {
     AnalysisInputLocation inputLocation =
         new JavaClassPathAnalysisInputLocation(path.toString(), SourceType.Application);
     JavaView view = new JavaView(inputLocation);
-    Collection<JavaSootClass> viewClasses = view.getClasses().toList();
+    Collection<JavaSootClass> viewClasses = view.getClasses();
 
     File dir = new File("facts");
     dir.mkdirs();
