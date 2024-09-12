@@ -1,27 +1,25 @@
 package sootupexport;
 
-import java.io.*;
+import sootup.apk.parser.ApkAnalysisInputLocation;
+import sootup.apk.parser.DexBodyInterceptors;
+import sootup.java.core.JavaSootClass;
+import sootup.java.core.views.JavaView;
+
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.*;
-import java.util.*;
-import java.util.concurrent.*;
-import sootup.core.inputlocation.*;
-import sootup.core.model.*;
-import sootup.core.types.*;
-import sootup.java.bytecode.inputlocation.*;
-import sootup.java.core.*;
-import sootup.java.core.views.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collection;
 
 public class Main {
   // private static ConcurrentSet<Type> types;
 
   public static void main(String[] args) throws IOException {
-    //Path path = FileSystems.getDefault().getPath(".", "test.apk");
-    Path path = FileSystems.getDefault().getPath(".");
-    AnalysisInputLocation inputLocation =
-        new JavaClassPathAnalysisInputLocation(path.toString(), SourceType.Application);
+    // Path path = FileSystems.getDefault().getPath(".", "test.apk");
+    Path path = Paths.get("backflash.apk");
+    ApkAnalysisInputLocation inputLocation = new ApkAnalysisInputLocation(path,"", DexBodyInterceptors.Default.bodyInterceptors());
     JavaView view = new JavaView(inputLocation);
-    Collection<JavaSootClass> viewClasses = view.getClasses();
+    Collection<JavaSootClass> viewClasses = view.getClasses().toList();
 
     File dir = new File("facts");
     dir.mkdirs();

@@ -59,6 +59,12 @@
             <artifactId>sootup.analysis</artifactId>
             <version>${sootup-version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.soot-oss</groupId>
+            <artifactId>sootup.apk.parser</artifactId>
+            <version>${sootup-version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.apache.commons</groupId>
