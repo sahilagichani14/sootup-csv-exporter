@@ -1,17 +1,15 @@
 package sootupexport;
 
+import sootup.apk.frontend.ApkAnalysisInputLocation;
+import sootup.interceptors.BytecodeBodyInterceptors;
+import sootup.java.core.JavaSootClass;
+import sootup.java.core.views.JavaView;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
-import java.util.List;
-
-import sootup.apk.frontend.ApkAnalysisInputLocation;
-import sootup.core.transform.BodyInterceptor;
-import sootup.interceptors.*;
-import sootup.java.core.JavaSootClass;
-import sootup.java.core.views.JavaView;
 
 public class Main {
   // private static ConcurrentSet<Type> types;
@@ -19,10 +17,8 @@ public class Main {
   public static void main(String[] args) throws IOException {
     // Path path = FileSystems.getDefault().getPath(".", "test.apk");
     Path path = Paths.get("backflash.apk");
-    List<BodyInterceptor> defaultBodyInterceptors =
-        List.of(new NopEliminator(), new EmptySwitchEliminator(), new CastAndReturnInliner(), new LocalSplitter(), new Aggregator(), new CopyPropagator(), new ConstantPropagatorAndFolder());
     ApkAnalysisInputLocation inputLocation =
-        new ApkAnalysisInputLocation(path, "", defaultBodyInterceptors);
+        new ApkAnalysisInputLocation(path, "", BytecodeBodyInterceptors.Default.getBodyInterceptors());
     JavaView view = new JavaView(inputLocation);
     Collection<JavaSootClass> viewClasses = view.getClasses().toList();
 
