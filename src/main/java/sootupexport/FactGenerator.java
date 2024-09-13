@@ -5,7 +5,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import sootup.core.inputlocation.*;
 import sootup.core.model.*;
 import sootup.core.types.*;
-import sootup.java.bytecode.inputlocation.*;
 import sootup.java.core.*;
 import sootup.java.core.views.*;
 

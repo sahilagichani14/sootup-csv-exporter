@@ -1,16 +1,14 @@
 package sootupexport;
 
+import sootup.core.signatures.MethodSignature;
+import sootup.core.types.ArrayType;
+import sootup.core.types.Type;
+import sootup.java.core.JavaSootMethod;
+
 import java.util.Map;
-import java.util.concurrent.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import sootup.core.inputlocation.*;
-import sootup.core.model.*;
-import sootup.core.signatures.*;
-import sootup.core.types.*;
-import sootup.java.bytecode.inputlocation.*;
-import sootup.java.core.*;
-import sootup.java.core.views.*;
 
 public class Representation {
 

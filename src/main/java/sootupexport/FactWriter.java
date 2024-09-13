@@ -1,14 +1,12 @@
 package sootupexport;
 
-import static sootupexport.PredicateFile.*;
+import sootup.core.signatures.MethodSignature;
+import sootup.core.types.ClassType;
+import sootup.core.types.Type;
+import sootup.java.core.JavaSootClass;
+import sootup.java.core.JavaSootMethod;
 
-import sootup.core.inputlocation.*;
-import sootup.core.model.*;
-import sootup.core.signatures.*;
-import sootup.core.types.*;
-import sootup.java.bytecode.inputlocation.*;
-import sootup.java.core.*;
-import sootup.java.core.views.*;
+import static sootupexport.PredicateFile.*;
 
 public class FactWriter {
   protected final Database _db;
